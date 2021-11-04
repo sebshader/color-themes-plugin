@@ -241,6 +241,7 @@ proc ::color-themes::opendialog {} {
     set counter 0
     set names ""
     foreach i $themes {
+        ::color-themes::reset_defaults
         source ${i}
         set name [{::color-themes::trimsubstringright} [file tail ${i}] -plugin.tcl]
         lappend names $name
@@ -405,7 +406,7 @@ proc ::color-themes::opendialog {} {
             -anchor nw -font $fontinfo -fill $::pd_colors(graph_text)
         incr height $boxincr
         incr counter
-        ::color-themes::reset_defaults
+
     }
     set canvas_height $height
     set num_themes $counter
