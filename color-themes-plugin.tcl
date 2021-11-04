@@ -347,6 +347,11 @@ proc ::color-themes::opendialog {} {
         .colortheme_dialog.theme_list.c.f$counter.c create text \
             [expr {$tempx + 2}] [expr {$tempy + 3}] -text selected -anchor nw \
             -font $fontinfo -fill $::pd_colors(selected)
+        # selection "lasso"
+        .colortheme_dialog.theme_list.c.f$counter.c create rectangle \
+            [expr {$tempx + 6}] [expr {$tempy - 7}] \
+            [expr {$tempx + $twidth*0.98}] [expr {$tempy + $mheight*0.4}] \
+            -outline $::pd_colors(selection_rectangle)
         # comment
         .colortheme_dialog.theme_list.c.f$counter.c create text \
             [expr {$mwidth * 26 + 31}] [expr {$mheight + 8}] -text comment \
@@ -390,6 +395,15 @@ proc ::color-themes::opendialog {} {
         .colortheme_dialog.theme_list.c.f$counter.c create text \
             [expr {$tempx + 2}] $tempy -text fatal \
             -anchor nw -font $fontinfo -fill $::pd_colors(pdwindow_fatal_text)
+        # go back and make GOP
+        set tempx [expr {$mwidth * 26 + 44}]
+        set tempy [expr {4+$mheight}]
+        .colortheme_dialog.theme_list.c.f$counter.c create rectangle \
+            $tempx 4 [expr {$tempx + $twidth}] \
+            $tempy -outline $::pd_colors(graph_outline)
+        .colortheme_dialog.theme_list.c.f$counter.c create text \
+            [expr {$tempx + 2}] 7 -text GOP \
+            -anchor nw -font $fontinfo -fill $::pd_colors(graph_text)
         incr height $boxincr
         incr counter
         ::color-themes::reset_defaults
