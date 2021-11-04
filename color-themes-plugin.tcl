@@ -204,14 +204,13 @@ proc ::color-themes::opendialog {} {
         raise .colortheme_dialog
         focus .colortheme_dialog
         return
-    } else {
-        toplevel .colortheme_dialog -class ColorThemeDialog
-        wm title .colortheme_dialog [_ "Color Themes"]
-        wm group .colortheme_dialog .
-        wm resizable .colortheme_dialog 0 1
-        wm transient .colortheme_dialog
-        wm minsize .colortheme_dialog 400 380
     }
+    toplevel .colortheme_dialog -class ColorThemeDialog
+    wm title .colortheme_dialog [_ "Color Themes"]
+    wm group .colortheme_dialog .
+    wm resizable .colortheme_dialog 0 1
+    wm transient .colortheme_dialog
+    wm minsize .colortheme_dialog 400 380
     if {$::windowingsystem eq "aqua"} {
         .colortheme_dialog configure -menu $::dialog_menubar
     }
