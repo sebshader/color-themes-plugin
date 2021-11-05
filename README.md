@@ -1,7 +1,8 @@
 # color-themes-plugin
 theme-picker plugin for pure data
 
-to install: make sure folder is named color-themes-plugin and place it in your pd path
+to install: make sure folder is named color-themes-plugin and place it in your pd path. also make sure there are no other active -plugin.tcl plugins in the pd path
+that set colors.
 
 Open the theme picker from the preferences menu > Color Themes...
 you can save the current (applied) theme to be used the next time pd starts by hitting "save", 
