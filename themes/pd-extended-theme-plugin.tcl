@@ -1,7 +1,6 @@
 array set ::pd_colors {
 selected "#00f"
 signal_iolet "#558"
-signal_iolet_border "#558"
 msg_iolet "#fff"
 obj_box_outline "#ccc"
 obj_box_fill "#f6f8f8"
