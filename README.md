@@ -1,5 +1,5 @@
 # color-themes-plugin
-theme-picker plugin for pure data
+theme-picker plugin for pd-next https://github.com/sebshader/pdnext/releases and hopefully pure data in the future
 
 to install: make sure folder is named color-themes-plugin and place it in your pd path. also make sure there are no other active -plugin.tcl plugins in the pd path
 that set colors.
