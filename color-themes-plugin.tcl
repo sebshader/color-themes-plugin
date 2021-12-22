@@ -480,10 +480,10 @@ proc ::color-themes::init {mymenu} {
     close $fp
 }
 
-#for some reason returning from source didn't work
+# for some reason returning from source didn't work
 if {![array exists ::pd_colors]} {
     ::pdwindow::post "color-themes: no ::pd_colors array: skipping\n"
-    #return not working here
+    # return not working here
 } else {
     if {$::windowingsystem eq "aqua"} {
         ::color-themes::init .menubar.apple.preferences
