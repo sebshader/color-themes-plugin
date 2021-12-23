@@ -96,3 +96,4 @@ array set ::pd_colors {
     canvas_text_cursor 	     "#FFFFFF"
     cursor                   "#FFFFFF"
 }
+set ::pd_colors(atom_box_focus_outline) $::pd_colors(atom_box_outline)

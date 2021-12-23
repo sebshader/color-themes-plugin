@@ -17,3 +17,4 @@ canvas_fill "white"
 }
 set ::pd_colors(signal_iolet_border) $::pd_colors(signal_cord)
 set ::pd_colors(msg_iolet_border) $::pd_colors(msg_cord)
+set ::pd_colors(atom_box_focus_outline) $::pd_colors(atom_box_outline)

@@ -97,3 +97,4 @@ array set ::pd_colors {
     scrollbox_fill           "#45403d"
     text                     "#ddc7a1" 
 }
+set ::pd_colors(atom_box_focus_outline) $::pd_colors(atom_box_outline)

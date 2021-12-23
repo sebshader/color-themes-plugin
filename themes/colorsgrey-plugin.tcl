@@ -44,3 +44,4 @@ helpbrowser_fill "grey25"
 helpbrowser_text "#FFFFFF"
 helpbrowser_highlight "grey45"
 }
+set ::pd_colors(atom_box_focus_outline) $::pd_colors(atom_box_outline)

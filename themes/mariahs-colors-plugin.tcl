@@ -77,6 +77,7 @@ canvas_text_cursor "deep sky blue"
 helpbrowser_hl_text "white"
 helpbrowser_text "lime green"
 }
+set ::pd_colors(atom_box_focus_outline) $::pd_colors(atom_box_outline)
 
 
 #random colors for everything
