@@ -50,6 +50,7 @@ array set ::pd_colors {
     obj_box_outline 	     "#DCD6C5"
     msg_box_outline 	     "#DCD6C5"
     atom_box_outline 	     "#DCD6C5"
+    atom_box_focus_outline   "#AE7CCB"
     msg_box_fill 		     "#DCD6C5"
     obj_box_fill 		     "#DCD6C5"
     atom_box_fill 		     "#DCD6C5"
@@ -85,10 +86,12 @@ array set ::pd_colors {
     pdwindow_debug_text 	 "#205988"
 
     helpbrowser_highlight 	 "#c2baa1"
+    helpbrowser_hl_text      "#AE7CCB"
     selection_rectangle      "#9C5FBF"
     selected 		         "#AE7CCB"
     txt_highlight_front      "#AE7CCB"
     text_window_highlight    "#AAAAAA"
+    text_window_hl_text      "#AE7CCB"
     txt_highlight 		     "#AAAAAA"
 
     text_window_cursor 	     "#2B2B2B"
@@ -98,4 +101,3 @@ array set ::pd_colors {
     scrollbox_fill           "#DCD6C5"
     text                     "#5F5F5E"
 }
-set ::pd_colors(atom_box_focus_outline) $::pd_colors(atom_box_outline)

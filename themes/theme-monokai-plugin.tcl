@@ -63,6 +63,7 @@ array set ::pd_colors {
     obj_box_outline 	     "#403f34"
     msg_box_outline 	     "#403f34"
     atom_box_outline 	     "#403f34"
+    atom_box_focus_outline 	 "#90BFC9"
     msg_box_fill 		     "#403f34"
     obj_box_fill 		     "#403f34"
     atom_box_fill 		     "#403f34"
@@ -88,8 +89,10 @@ array set ::pd_colors {
     selected 		         "#90BFC9"
     selection_rectangle      "#90BFC9"
     helpbrowser_highlight 	 "#716F5B"
+    helpbrowser_hl_text      "#90BFC9"
     txt_highlight_front      "#060901"
     text_window_highlight    "#90BFC9"
+    text_window_hl_text      "#000"
     txt_highlight 		     "#716F5B"
 
     text_window_cursor 	     "#FFFFFF"
