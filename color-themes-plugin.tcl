@@ -89,7 +89,53 @@ proc ::color-themes::set_theme {name} {
         if {[winfo class $wind] eq "PatchWindow"} {
             pdsend "$wind map 0"
             pdsend "$wind map 1"
-            ${wind}.c configure -background [::pdtk_canvas::get_color canvas_fill]
+            set tmpcol [::pdtk_canvas::get_color txt_highlight $wind]
+            if {$tmpcol ne ""} {
+                ${wind}.c configure -selectbackground $tmpcol
+            }
+            set tmpcol [::pdtk_canvas::get_color canvas_fill $wind]
+            if {$tmpcol ne ""} {
+                ${wind}.c configure -background $tmpcol
+            }
+            set tmpcol [::pdtk_canvas::get_color canvas_text_cursor $wind]
+            if {$tmpcol ne ""} {
+                ${wind}.c configure -insertbackground $tmpcol
+            }
+            #in Tk 8.6 the selectforeground is set by the os theme?
+            set tmpcol [::pdtk_canvas::get_color txt_highlight_front $wind]
+            if {$tmpcol ne ""} {
+                ${wind}.c configure -selectforeground $tmpcol
+            }
+        } elseif {[winfo class $wind] eq "HelpBrowser"} {
+            foreach child [winfo children .helpbrowser.c.f] {
+                if {[winfo class $child] eq "Listbox"} {
+                    ::helpbrowser::set_listbox_colors $child
+                }
+            }
+        } else {
+            # assume text window if text widget
+            if {[winfo exists $wind.text]} {
+                set tmpcol [::pdtk_canvas::get_color text_window_text $wind]
+                if {$tmpcol ne ""} {
+                    $wind.text configure -foreground $tmpcol
+                }	
+                set tmpcol [::pdtk_canvas::get_color text_window_cursor $wind]
+                if {$tmpcol ne ""} {
+                    $wind.text configure -insertbackground $tmpcol
+                }
+                set tmpcol [::pdtk_canvas::get_color text_window_fill $wind]
+                if {$tmpcol ne ""} {
+                    $wind.text configure -background $tmpcol
+                }
+                set tmpcol [::pdtk_canvas::get_color text_window_highlight $wind]
+                if {$tmpcol ne ""} {
+                    $wind.text configure -selectbackground $tmpcol
+                }
+                set tmpcol [::pdtk_canvas::get_color text_window_hl_text $wind]
+                if {$tmpcol ne ""} {
+                    $wind.text configure -selectforeground $tmpcol
+                }
+            }
         }
     }
     ::pdwindow::set_colors
