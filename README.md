@@ -10,8 +10,7 @@ you can save the current (applied) theme to be used the next time pd starts by h
 On OSX if you select a theme from the list and click "Save as Dark Theme" then that theme will open instead if you're in dark mode when you open pd.
 In order to stop using a specific theme for dark mode you can click "Delete Dark Theme"
 
-I couldn't figure out a good way to include the text window and help browser colors, so those have to be re-mapped for the changes to be seen. 
-I also had some trouble with the text highlight background color
+If a color theme is chosen that doesn't have colors set for certain elements of the canvas window, text window, or helpbrowser window then those windows will have to be recreated before the default values are displayed. (tk makes it difficult to get default color values)
 
 In order to include more themes, put them in the "themes" folder inside. But only include setting colors in the files or else other things can get messed up when
 the list gets drawn.
