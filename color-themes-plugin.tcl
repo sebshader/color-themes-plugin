@@ -62,6 +62,7 @@ proc ::color-themes::reset_defaults {} {
         pdwindow_error_text "#D00"
         pdwindow_post_text "#000"
         pdwindow_debug_text "#484848"
+        pdwindow_hl_text ""
         helpbrowser_fill "#FFFFFF"
         helpbrowser_text ""
         helpbrowser_highlight ""
