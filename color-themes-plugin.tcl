@@ -208,6 +208,17 @@ proc ::color-themes::click {box} {
         green -width 7
 }
 
+proc ::color-themes::scroll {box coord units boxincr} {
+    variable num_themes
+    # not sure of a better way to simulate hovering..
+    set ocanvy [.colortheme_dialog.theme_list.c canvasy 0]
+    .colortheme_dialog.theme_list.c yview scroll [expr {- ($units)}] units
+    set boxnum [expr max(0, min($box + int($coord + \
+        [.colortheme_dialog.theme_list.c canvasy 0] - $ocanvy)/$boxincr, \
+        $num_themes-1))]
+    {::color-themes::motion} $boxnum
+}
+
 proc ::color-themes::apply {names} {
     variable selected_theme
     if {$selected_theme eq ""} {return} 
@@ -306,9 +317,8 @@ proc ::color-themes::opendialog {} {
             $boxheight -background $::pd_colors(canvas_fill) \
             -highlightthickness 0
         grid .colortheme_dialog.theme_list.c.f$counter.c
-        bind .colortheme_dialog.theme_list.c.f$counter.c <MouseWheel> {
-            .colortheme_dialog.theme_list.c yview scroll [expr {- (%D)}] units
-        }
+        bind .colortheme_dialog.theme_list.c.f$counter.c <MouseWheel> \
+            [list {::color-themes::scroll} $counter %y %D $boxincr]
         bind .colortheme_dialog.theme_list.c.f$counter.c <Motion> \
             [list {::color-themes::motion} $counter]
         bind .colortheme_dialog.theme_list.c.f$counter.c <ButtonPress> \
