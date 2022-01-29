@@ -213,10 +213,9 @@ proc ::color-themes::scroll {box coord units boxincr} {
     # not sure of a better way to simulate hovering..
     set ocanvy [.colortheme_dialog.theme_list.c canvasy 0]
     .colortheme_dialog.theme_list.c yview scroll [expr {- ($units)}] units
-    set boxnum [expr max(0, min($box + int($coord + \
+    {::color-themes::motion} [expr max(0, min($box + int($coord + \
         [.colortheme_dialog.theme_list.c canvasy 0] - $ocanvy)/$boxincr, \
         $num_themes-1))]
-    {::color-themes::motion} $boxnum
 }
 
 proc ::color-themes::apply {names} {
