@@ -188,7 +188,9 @@ proc ::color-themes::motion {box} {
 }
 
 proc ::color-themes::click {box} {
-    if {${::color-themes::hover_theme} eq ""} {return}
+    if {${::color-themes::hover_theme} eq ""} {
+        set {::color-themes::hover_theme} $box
+    }
     if {${::color-themes::selected_theme} ne "" && \
     ${::color-themes::selected_theme} ne ${::color-themes::hover_theme}} {
         .colortheme_dialog.theme_list.c.f${::color-themes::selected_theme}.c \
