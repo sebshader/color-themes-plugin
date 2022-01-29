@@ -188,9 +188,8 @@ proc ::color-themes::motion {box} {
 }
 
 proc ::color-themes::click {box} {
-    set {::color-themes::hover_theme} $box
     if {${::color-themes::selected_theme} ne "" && \
-    ${::color-themes::selected_theme} ne ${::color-themes::hover_theme}} {
+    ${::color-themes::selected_theme} ne $box} {
         .colortheme_dialog.theme_list.c.f${::color-themes::selected_theme}.c \
             itemconfigure box${::color-themes::selected_theme} -outline \
             black -width 1
@@ -198,7 +197,8 @@ proc ::color-themes::click {box} {
             itemconfigure box${::color-themes::selected_theme} -outline \
             black -width 1
     }
-    set {::color-themes::selected_theme} ${::color-themes::hover_theme}
+    set {::color-themes::hover_theme} $box
+    set {::color-themes::selected_theme} $box
 
     .colortheme_dialog.theme_list.c.f$box.c itemconfigure \
         box${::color-themes::hover_theme} -outline \
