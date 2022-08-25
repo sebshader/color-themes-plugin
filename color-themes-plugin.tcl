@@ -318,6 +318,13 @@ proc ::color-themes::opendialog {} {
         grid .colortheme_dialog.theme_list.c.f$counter.c
         bind .colortheme_dialog.theme_list.c.f$counter.c <MouseWheel> \
             [list {::color-themes::scroll} $counter %y %D $boxincr]
+        if {$::windowingsystem eq "x11"} {
+                # from http://wiki.tcl.tk/3893
+            bind .colortheme_dialog.theme_list.c.f$counter.c <Button-4> \
+                {event generate %W <MouseWheel> -delta  1}
+            bind .colortheme_dialog.theme_list.c.f$counter.c <Button-5> \
+                {event generate %W <MouseWheel> -delta -1}
+        }
         bind .colortheme_dialog.theme_list.c.f$counter.c <Motion> \
             [list {::color-themes::motion} $counter]
         bind .colortheme_dialog.theme_list.c.f$counter.c <ButtonPress> \
@@ -498,7 +505,13 @@ proc ::color-themes::opendialog {} {
     bind .colortheme_dialog.theme_list.c <MouseWheel> {
         .colortheme_dialog.theme_list.c yview scroll [expr {- (%D)}] units
     }
-    
+    if {$::windowingsystem eq "x11"} {
+        # from http://wiki.tcl.tk/3893
+        bind .colortheme_dialog.theme_list.c <Button-4> \
+            {event generate %W <MouseWheel> -delta  1}
+        bind .colortheme_dialog.theme_list.c <Button-5> \
+            {event generate %W <MouseWheel> -delta -1}
+    }
     bind .colortheme_dialog.theme_list.c <Leave> {
         if {${::color-themes::hover_theme} ne "" && \
         ${::color-themes::selected_theme} ne ${::color-themes::hover_theme}} {
