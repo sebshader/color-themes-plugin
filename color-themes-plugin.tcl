@@ -335,6 +335,10 @@ proc ::color-themes::opendialog {} {
                 {event generate %W <MouseWheel> -delta 1 -y %y}
             bind .colortheme_dialog.theme_list.c.f$counter.c <Button-5> \
                 {event generate %W <MouseWheel> -delta -1 -y %y}
+            bind .colortheme_dialog.theme_list.c.f$counter.c <Shift-Button-4> \
+                {break}
+            bind .colortheme_dialog.theme_list.c.f$counter.c <Shift-Button-5> \
+                {break}
         }
         bind .colortheme_dialog.theme_list.c.f$counter.c <Motion> \
             [list {::color-themes::motion} $counter]
@@ -521,6 +525,10 @@ proc ::color-themes::opendialog {} {
             {event generate %W <MouseWheel> -delta 1 -y %y}
         bind .colortheme_dialog.theme_list.c <Button-5> \
             {event generate %W <MouseWheel> -delta -1 -y %y}
+        bind .colortheme_dialog.theme_list.c <Shift-Button-4> \
+            {break}
+        bind .colortheme_dialog.theme_list.c <Shift-Button-5> \
+            {break}
     }
     bind .colortheme_dialog.theme_list.c <Leave> {
         if {${::color-themes::hover_theme} ne "" && \
