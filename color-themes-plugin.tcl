@@ -530,7 +530,8 @@ proc ::color-themes::opendialog {} {
         bind .colortheme_dialog.theme_list.c <Shift-Button-5> \
             {break}
     }
-    bind .colortheme_dialog.theme_list.c <Leave> {
+    bind .colortheme_dialog <Motion><Leave> {
+        #::pdwindow::post "leave\n"
         if {${::color-themes::hover_theme} ne "" && \
         ${::color-themes::selected_theme} ne ${::color-themes::hover_theme}} {
             .colortheme_dialog.theme_list.c.f${::color-themes::hover_theme}.c \
