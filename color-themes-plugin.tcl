@@ -219,6 +219,16 @@ proc ::color-themes::scroll {box coord units boxincr} {
         $num_themes-1))]
 }
 
+proc ::color-themes::mainscroll {coord units boxincr} {
+    variable num_themes
+    #::pdwindow::post "coord: $coord units: $units boxincr: $boxincr\n"
+    set coord [.colortheme_dialog.theme_list.c canvasy $coord]
+    set ocanvy [.colortheme_dialog.theme_list.c canvasy 0]
+    .colortheme_dialog.theme_list.c yview scroll [expr {- ($units)}] units
+    {::color-themes::motion} [expr max(0, min(int($coord + \
+        [.colortheme_dialog.theme_list.c canvasy 0] - $ocanvy)/$boxincr, $num_themes - 1))]
+}
+
 proc ::color-themes::apply {names} {
     variable selected_theme
     if {$selected_theme eq ""} {return} 
@@ -503,15 +513,14 @@ proc ::color-themes::opendialog {} {
         grid configure .colortheme_dialog.close -pady 5
         grid configure .colortheme_dialog.save -pady 5
     }
-    bind .colortheme_dialog.theme_list.c <MouseWheel> {
-        .colortheme_dialog.theme_list.c yview scroll [expr {- (%D)}] units
-    }
+    bind .colortheme_dialog.theme_list.c <MouseWheel> \
+        [list {::color-themes::mainscroll} %y %D $boxincr]
     if {$::windowingsystem eq "x11"} {
         # from http://wiki.tcl.tk/3893
         bind .colortheme_dialog.theme_list.c <Button-4> \
-            {event generate %W <MouseWheel> -delta  1}
+            {event generate %W <MouseWheel> -delta 1 -y %y}
         bind .colortheme_dialog.theme_list.c <Button-5> \
-            {event generate %W <MouseWheel> -delta -1}
+            {event generate %W <MouseWheel> -delta -1 -y %y}
     }
     bind .colortheme_dialog.theme_list.c <Leave> {
         if {${::color-themes::hover_theme} ne "" && \
