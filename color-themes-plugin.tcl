@@ -211,6 +211,7 @@ proc ::color-themes::click {box} {
 proc ::color-themes::scroll {box coord units boxincr} {
     variable num_themes
     # not sure of a better way to simulate hovering..
+    #::pdwindow::post "box: $box coord: $coord units: $units boxincr: $boxincr\n"
     set ocanvy [.colortheme_dialog.theme_list.c canvasy 0]
     .colortheme_dialog.theme_list.c yview scroll [expr {- ($units)}] units
     {::color-themes::motion} [expr max(0, min($box + int($coord + \
@@ -321,9 +322,9 @@ proc ::color-themes::opendialog {} {
         if {$::windowingsystem eq "x11"} {
                 # from http://wiki.tcl.tk/3893
             bind .colortheme_dialog.theme_list.c.f$counter.c <Button-4> \
-                {event generate %W <MouseWheel> -delta  1}
+                {event generate %W <MouseWheel> -delta 1 -y %y}
             bind .colortheme_dialog.theme_list.c.f$counter.c <Button-5> \
-                {event generate %W <MouseWheel> -delta -1}
+                {event generate %W <MouseWheel> -delta -1 -y %y}
         }
         bind .colortheme_dialog.theme_list.c.f$counter.c <Motion> \
             [list {::color-themes::motion} $counter]
