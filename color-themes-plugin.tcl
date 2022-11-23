@@ -91,22 +91,26 @@ proc ::color-themes::set_theme {name} {
             pdsend "$wind map 0"
             pdsend "$wind map 1"
             set tmpcol [::pdtk_canvas::get_color txt_highlight $wind]
-            if {$tmpcol ne ""} {
-                ${wind}.c configure -selectbackground $tmpcol
+            # idk about an easier way to set stuff to default
+            if {$tmpcol eq ""} {
+                set tmpcol [lindex [${wind}.c configure -selectbackground] 3]
             }
+            ${wind}.c configure -selectbackground $tmpcol
             set tmpcol [::pdtk_canvas::get_color canvas_fill $wind]
-            if {$tmpcol ne ""} {
-                ${wind}.c configure -background $tmpcol
+            if {$tmpcol eq ""} {
+                set tmpcol [lindex [${wind}.c configure -background] 3]
             }
+            ${wind}.c configure -background $tmpcol
             set tmpcol [::pdtk_canvas::get_color canvas_text_cursor $wind]
-            if {$tmpcol ne ""} {
-                ${wind}.c configure -insertbackground $tmpcol
+            if {$tmpcol eq ""} {
+                set tmpcol [lindex [${wind}.c configure -insertbackground] 3]
             }
-            #in Tk 8.6 the selectforeground is set by the os theme?
+            ${wind}.c configure -insertbackground $tmpcol
             set tmpcol [::pdtk_canvas::get_color txt_highlight_front $wind]
-            if {$tmpcol ne ""} {
-                ${wind}.c configure -selectforeground $tmpcol
+            if {$tmpcol eq ""} {
+                set tmpcol [lindex [${wind}.c configure -selectforeground] 3]
             }
+            ${wind}.c configure -selectforeground $tmpcol
         } elseif {[winfo class $wind] eq "HelpBrowser"} {
             foreach child [winfo children .helpbrowser.c.f] {
                 if {[winfo class $child] eq "Listbox"} {
@@ -117,25 +121,30 @@ proc ::color-themes::set_theme {name} {
             # assume text window if text widget
             if {[winfo exists $wind.text]} {
                 set tmpcol [::pdtk_canvas::get_color text_window_text $wind]
-                if {$tmpcol ne ""} {
-                    $wind.text configure -foreground $tmpcol
-                }	
+                if {$tmpcol eq ""} {
+                    set tmpcol [lindex [${wind}.text configure -foreground] 3]
+                }
+                ${wind}.text configure -foreground $tmpcol
                 set tmpcol [::pdtk_canvas::get_color text_window_cursor $wind]
-                if {$tmpcol ne ""} {
-                    $wind.text configure -insertbackground $tmpcol
+                if {$tmpcol eq ""} {
+                    set tmpcol [lindex [${wind}.text configure -insertbackground] 3]
                 }
+                ${wind}.text configure -insertbackground $tmpcol
                 set tmpcol [::pdtk_canvas::get_color text_window_fill $wind]
-                if {$tmpcol ne ""} {
-                    $wind.text configure -background $tmpcol
+                if {$tmpcol eq ""} {
+                    set tmpcol [lindex [${wind}.text configure -background] 3]
                 }
+                ${wind}.text configure -background $tmpcol
                 set tmpcol [::pdtk_canvas::get_color text_window_highlight $wind]
-                if {$tmpcol ne ""} {
-                    $wind.text configure -selectbackground $tmpcol
+                if {$tmpcol eq ""} {
+                    set tmpcol [lindex [${wind}.text configure -selectbackground] 3]
                 }
+                ${wind}.text configure -selectbackground $tmpcol
                 set tmpcol [::pdtk_canvas::get_color text_window_hl_text $wind]
-                if {$tmpcol ne ""} {
-                    $wind.text configure -selectforeground $tmpcol
+                if {$tmpcol eq ""} {
+                    set tmpcol [lindex [${wind}.text configure -selectforeground] 3]
                 }
+                ${wind}.text configure -selectforeground $tmpcol
             }
         }
     }
@@ -530,6 +539,11 @@ proc ::color-themes::opendialog {} {
         bind .colortheme_dialog.theme_list.c <Shift-Button-5> \
             {break}
     }
+    # on xfwm and openbox <Enter> and <Leave> events are generated when the scroll wheel is used
+    # or the mouse is clicked, so <Leave> and <Enter> can't be used directly and I have to
+    # calculate the geometry for which canvas is hovered manually
+    # https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=929090
+    # https://linux.debian.user.narkive.com/dXxiVBcM/strange-event-handling-problem-with-xfce-lxde-which-pkg-responsible
     bind .colortheme_dialog <Motion><Leave> {
         #::pdwindow::post "leave\n"
         if {${::color-themes::hover_theme} ne "" && \
