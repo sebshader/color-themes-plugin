@@ -339,6 +339,11 @@ proc ::color-themes::opendialog {} {
         grid .colortheme_dialog.theme_list.c.f$counter.c
         bind .colortheme_dialog.theme_list.c.f$counter.c <MouseWheel> \
             [list {::color-themes::scroll} $counter %y %D $boxincr]
+
+        if {$::windowingsystem eq "win32"} {
+            .colortheme_dialog.theme_list.c.f$counter.c configure \
+                -yscrollincrement 1
+        }
         if {$::windowingsystem eq "x11"} {
                 # from http://wiki.tcl.tk/3893
             bind .colortheme_dialog.theme_list.c.f$counter.c <Button-4> \
@@ -529,6 +534,9 @@ proc ::color-themes::opendialog {} {
     }
     bind .colortheme_dialog.theme_list.c <MouseWheel> \
         [list {::color-themes::mainscroll} %y %D $boxincr]
+    if {$::windowingsystem eq "win32"} {
+        .colortheme_dialog.theme_list.c configure -yscrollincrement 1
+    }
     if {$::windowingsystem eq "x11"} {
         # from http://wiki.tcl.tk/3893
         bind .colortheme_dialog.theme_list.c <Button-4> \
